@@ -1,14 +1,18 @@
 #include "header.h"
-#include <iostream>
+
 
 using namespace std;
 
 int main()
 {   
     int buget;
+    ifstream input("input.txt");
+    ofstream output("output.txt");
+    input >> buget;
 
+    Nod* rad = creare_arbore(input);
+    
 
-    Nod *rad = citesteArbore();
 
 
 

@@ -1,6 +1,7 @@
 #ifndef _HEADER_H_
 #define _HEADER_H_
 #include <fstream>
+using namespace std;
 
 struct Nod
 {
@@ -8,8 +9,9 @@ struct Nod
     Nod *st, *dr;
 };
 
-static void eroare();
-char readchar();
-Nod *citesteArbore();
+Nod* creare_nod(int x);
+void Insert(Nod*& rad, int x);
+Nod* creare_arbore(ifstream& input);
+
 
 #endif

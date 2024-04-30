@@ -1,68 +1,41 @@
 #include "header.h"
-using namespace std;
 
-
-ifstream input("input.txt");
-ifstream output("output.txt");
-int buget;
-
-
-char car;
-
-static void eroare()
+Nod* creare_nod(int x)
 {
-	exit(1);
+	Nod* p = new Nod;
+	p->planeta = x;
+	p->st = p->dr = 0;
+	return p;
 }
 
-char readchar()
+void Insert(Nod*& rad, int x)
 {
-	char c;
-	do  input >> c;  while (c == ' ');
-	return c;
-}
-
-int citeste_planeta()
-{
-	int c;
-	if (!isalpha(car)) eroare();
-	c = car;
-	car = readchar();
-	return c;
-}
-
-Nod* citesteArbore()
-{
-	Nod* rad;
-	if (car == '-')
+	if(rad == 0)
 	{
-		rad = 0;
-		car = readchar();
+		rad = creare_nod(x);
+		return; 
+	}
+	if( x < rad->planeta)
+	{
+		Insert(rad->st, x);
 	}
 	else
 	{
-		rad = new Nod;
-		rad->planeta = citeste_planeta();
-		if (car != '(')
+		if(rad->planeta == x)
 		{
-			rad->st = 0;
-			rad->dr = 0;
-		}
-		else
-		{
-			car = readchar();
-			rad->st = citesteArbore();
-			if (car != ',')
-			{
-				rad->dr = 0;
-			}
-			else
-			{
-				car = readchar();
-				rad->dr = citesteArbore();
-			}
-			if (car != ')')  eroare();
-			car = readchar();
+			Insert(rad->dr, x);
 		}
 	}
-	return rad;
 }
+
+Nod* creare_arbore(ifstream& input)
+{
+	Nod *rad = new Nod;
+	int x;
+	while(input >> x)
+	{
+		Insert(rad,x);
+	}
+	return rad;	
+}
+
