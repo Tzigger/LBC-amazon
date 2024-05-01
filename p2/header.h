@@ -13,7 +13,7 @@ struct Nod
 
 Nod *creare_nod(int x);
 void Insert(Nod *&rad, int x);
-void afisare_inordine(Nod *rad);
+void afisare_inordine(Nod *rad, ofstream& output);
 
 struct Elem
 {

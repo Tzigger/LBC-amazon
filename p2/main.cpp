@@ -18,8 +18,8 @@ int main()
         Insert(rad, x);
     }
 
-    afisare_inordine(rad);
-    cout << endl;
+    afisare_inordine(rad, output);
+    output << endl;
 
     int k = 0;
 
@@ -27,7 +27,7 @@ int main()
 
     get_leaf_nodes(rad, q);
 
-    cout << "Nr maxim de planete vizitate este: " << det_max(rad, q, buget) << endl;
+    output << "Nr maxim de planete vizitate este: " << det_max(rad, q, buget) << endl;
 
     return 0;
 }

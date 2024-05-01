@@ -29,13 +29,13 @@ void Insert(Nod *&rad, int x)
 	}
 }
 
-void afisare_inordine(Nod *rad)
+void afisare_inordine(Nod *rad, ofstream& output)
 {
 	if (rad)
 	{
-		afisare_inordine(rad->st);
-		std::cout << rad->planeta << " ";
-		afisare_inordine(rad->dr);
+		afisare_inordine(rad->st, output);
+		output << rad->planeta << " ";
+		afisare_inordine(rad->dr, output);
 	}
 }
 
