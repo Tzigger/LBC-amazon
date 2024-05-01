@@ -9,4 +9,6 @@ struct dictionar{
     string neologism;
 };
 
+void remove_punct(string &word);
+
 #endif
