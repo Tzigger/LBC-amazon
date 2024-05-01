@@ -1,4 +1,6 @@
 #include "header.h"
+#include <iostream>
+
 
 Nod* creare_nod(int x)
 {
@@ -21,21 +23,49 @@ void Insert(Nod*& rad, int x)
 	}
 	else
 	{
-		if(rad->planeta == x)
+		if(rad->planeta < x)
 		{
 			Insert(rad->dr, x);
 		}
 	}
 }
 
-Nod* creare_arbore(ifstream& input)
+void afisare_inordine(Nod *rad)
 {
-	Nod *rad = new Nod;
-	int x;
-	while(input >> x)
+	if (rad)
 	{
-		Insert(rad,x);
+		afisare_inordine(rad->st);
+		std::cout << rad->planeta << " ";
+		afisare_inordine(rad->dr);
 	}
-	return rad;	
+}
+
+Coada INITQ()
+{
+	Coada q;
+	q.head= q.tail = 0;
+	return q;
+}
+
+int isempty(Coada q)
+{
+	return (q.head == 0 && q.tail == 0);
+}
+
+void PUT(Coada &q, int x)
+{
+    Elem *p = new Elem;
+    p->planeta = x;
+    p->succ = 0;
+    q.tail->succ = p;
+    q.tail = p;
+}
+
+void GET(Coada &q)
+{
+    Elem *p = q.head;
+    char aux = p->planeta;
+    q.head = p->succ;
+    delete p;
 }
 
